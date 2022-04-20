@@ -1,43 +1,57 @@
 import GoogleMapReact from 'google-map-react';
-import { HtmlHTMLAttributes } from "react";
+import { HtmlHTMLAttributes, useEffect, useState } from "react";
+import Marker from './Marker';
 
-interface Props extends HtmlHTMLAttributes<HTMLElement> { }
+interface Props extends HtmlHTMLAttributes<HTMLElement> {
+    selected: string;
+    locations: any[];
+}
 
-export default function GoogleMap({ ...props }: Props) {
-    const defaultProps = {
-        center: {
-            lat: -12.163513103408222,
-            lng: -76.97230952925827
-        },
-        zoom: 17
-    };
-    const renderMarkers = (map: any, maps: any) => {
-        const infoWindow = new google.maps.InfoWindow();
+export default function GoogleMap({ selected, locations, ..._props }: Props) {
+    const [geolocation, setGeoLocation] = useState({
+        lat: -12.047038,
+        lng: -77.077199
+    });
 
-        let marker = new maps.Marker({
-            position: { lat: -12.163513103408222, lng: -76.97230952925827 },
-            map,
-            title: 'IPD SJM',
-            text: 'IPD SJM',
-        });
+    const getCenter = () => {
+        if (selected != "") {
+            let data = locations.find(vc => vc.id == selected);
+            return {
+                lat: +data.location.lat,
+                lng: +data.location.lng
+            }
+        }
+        return geolocation
+    }
 
-        marker.addListener("click", () => {
-            //TODO: Show the information of the vaccination center
-            infoWindow.close();
-            infoWindow.setContent(marker.getTitle());
-            infoWindow.open(marker.getMap(), marker);
-        });
-        return marker;
-    };
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((data) => {
+            setGeoLocation({
+                lat: data.coords.latitude,
+                lng: data.coords.longitude
+            })
+        })
+    }, []);
+
+    const getZoom = () => {
+        return 12;
+    }
 
     return (
         <GoogleMapReact
             bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_KEY! }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-            onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
+            center={getCenter()}
+            zoom={getZoom()}
         >
-
+            {
+                locations.map((marker: any) => (
+                    < Marker key={`${marker.id}-${marker.location.lat},${marker.location.lng}`}
+                        selected={marker.id == selected}
+                        lat={marker.location.lat}
+                        lng={marker.location.lng}
+                    />
+                ))
+            }
         </GoogleMapReact>
     );
 }

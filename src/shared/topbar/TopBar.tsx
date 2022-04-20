@@ -15,23 +15,22 @@ const Links = [
 export default function TopBar({ ...props }: Props) {
     const router = useRouter();
 
-    // const isActive = 8
     const dynamicStyleLink = (path: string) => {
-        return path === router.pathname ? "bg-primary rounded" : "";
+        return path === router.pathname ? "bg-white rounded" : "";
     };
 
     const dynamicStyleBoder = (path: string) => {
-        return path === router.pathname ? "border-b-4 border-red-400" : "";
+        return path === router.pathname ? "border-b-4 border-primary bg-white" : "";
     };
 
     const dynamicStyleText = (path: string) => {
-        return path === router.pathname ? "text-red-400" : "text-slate-700";
+        return path === router.pathname ? "text-primary" : "text-slate-700";
     };
 
     return (
         <div className='w-screen h-15 flex'>
             <div className="flex py-2 px-6 w-2/12 h-full">
-                <div className="bg-red-400 h-full w-5 mr-5">
+                <div className="bg-primary h-full w-5 mr-5">
                 </div>
                 <h1>EnDondeMeVacuno</h1>
             </div>
@@ -58,16 +57,4 @@ export default function TopBar({ ...props }: Props) {
             </nav>
         </div>
     );
-    {/*<aside className="hidden md:block white border border-r border-slate-200  py-8 px-6 h-full">
-            <div className="flex border-2 border-slate-200 p-2 rounded-md">
-                <select className="bg-red-400 text-white p-1.5 rounded-md">
-                    <option>Nombre</option>
-                </select>
-                <div className="border border-r border-slate-200 mx-2"></div>
-                <input placeholder="Busca por nombre" />
-            </div>
-            <nav className="mt-6">
-
-            </nav>
-    </aside>*/}
 }
