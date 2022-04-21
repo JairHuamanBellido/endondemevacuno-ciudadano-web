@@ -35,16 +35,16 @@ export default function VaccinationList({ selectVaccines, ..._props }: Props) {
 
     return (
         <div>
-            <h2 className="font-semibold mt-7 mb-3">Vacunas por enfermedad</h2>
+            <h2 className="font-semibold lg:mt-7 mb-3">Vacunas por enfermedad</h2>
             <ul className="w-full flex-col">
                 {vaccinesXDisease.map((disease) => (
                     <li key={disease.id} className={`flex-col border-b-2 border-slate-200 py-3`}>
                         <h4 className={`font-semibold`}>
                             {disease.name}
                         </h4>
-                        <div className="flex justify-items-start space-x-5 mt-2.5">
+                        <div className="flex justify-between md:space-x-5 flex-wrap">
                             {disease.vaccination.map((vaccine) => (
-                                <span key={vaccine.name} className={`text-sm p-1.5 font-semibold rounded-md capitalize cursor-pointer ${dynamicStyleBG(
+                                <span key={vaccine.name} className={`mt-2 text-sm p-1.5 font-semibold rounded-md capitalize cursor-pointer h-fit ${dynamicStyleBG(
                                     vaccine.selected
                                 )}`} onClick={() => handleClick(vaccine.id, disease.id)}>
                                     {vaccine.name}

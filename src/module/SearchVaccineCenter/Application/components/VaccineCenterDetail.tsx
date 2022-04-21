@@ -33,7 +33,7 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
 
     if (vaccineCenter != undefined)
         return (
-            <div className="mt-7">
+            <div className="lg:mt-7">
                 <div className="flex mb-7 items-center">
                     <div className="flex">
                         <h2 className="text-primary font-semibold text-lg ">{vaccineCenter.name}</h2>

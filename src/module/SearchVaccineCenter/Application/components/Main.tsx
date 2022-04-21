@@ -96,8 +96,8 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
     }
 
     return (
-        <aside className="hidden md:block white border border-r border-slate-200 py-8 px-6 h-full w-4/12">
-            <div className="flex border-2 border-slate-200 p-2 rounded-md">
+        <div className="absolute w-9/12 top-0 left-[calc(12.5%)] lg:left-0 z-50 lg:relative lg:block white lg:border lg:border-r lg:border-slate-200 py-8 lg:px-6 lg:h-full lg:w-4/12 lg:min-w-fit">
+            <div className="flex bg-white lg:w-auto border-2 border-slate-200 p-2 rounded-md">
                 {isEnteringData() &&
                     <select value={chosenSearch} className="bg-primary text-white py-1.5 px-1 rounded-md focus:outline-none capitalize"
                         onChange={e => handleChangeSearchType(+e.target.value)}>
@@ -124,10 +124,12 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
                     </div>
                 )}
             </div>
-            {(chosenSearch == 0 || searching) && !hasBeenSelected() && (<ListVaccineCenters selectVaccineCenter={selectMap} vaccineCenters={getFilteredVaccinationCenter()} />)}
-            {chosenSearch == 1 && isEnteringData() && (<ListDistrics selectDistrict={selectDistrict} vaccineCenters={getFilteredVaccinationCenter()} />)}
-            {chosenSearch == 2 && isEnteringData() && (<VaccinationList selectVaccines={selectVaccines} />)}
-            {hasBeenSelected() && (<VaccineCenterDetail vaccineCenter={getVaccineCenterSelected()} />)}
-        </aside >
+            <div className="bg-white px-6 py-8 mt-4 rounded-md lg:p-0 lg:m-0">
+                {(chosenSearch == 0 || searching) && !hasBeenSelected() && (<ListVaccineCenters selectVaccineCenter={selectMap} vaccineCenters={getFilteredVaccinationCenter()} />)}
+                {chosenSearch == 1 && isEnteringData() && (<ListDistrics selectDistrict={selectDistrict} vaccineCenters={getFilteredVaccinationCenter()} />)}
+                {chosenSearch == 2 && isEnteringData() && (<VaccinationList selectVaccines={selectVaccines} />)}
+                {hasBeenSelected() && (<VaccineCenterDetail vaccineCenter={getVaccineCenterSelected()} />)}
+            </div>
+        </div >
     );
 }

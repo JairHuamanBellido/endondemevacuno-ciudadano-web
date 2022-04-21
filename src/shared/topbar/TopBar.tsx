@@ -4,7 +4,6 @@ import { HtmlHTMLAttributes } from "react";
 
 interface Props extends HtmlHTMLAttributes<HTMLElement> { }
 const Links = [
-    { id: 1, path: "/otro", label: "Inicio" },
     {
         id: 2,
         path: "/",
@@ -29,12 +28,12 @@ export default function TopBar({ ...props }: Props) {
 
     return (
         <div className='w-screen h-15 flex'>
-            <div className="flex py-2 px-6 w-2/12 h-full">
-                <div className="bg-primary h-full w-5 mr-5">
+            <div className="flex items-center py-2 px-6 w-fit h-full">
+                <div className="bg-primary h-5 w-5 mr-5">
                 </div>
-                <h1>EnDondeMeVacuno</h1>
+                <h1 className="h-fit">EnDondeMeVacuno</h1>
             </div>
-            <nav className="flex w-full mx-20">
+            <nav className="flex w-full md:mx-20">
                 <ul className="w-full flex justify-end">
                     {Links.map((e) => (
                         <li key={e.id} className={`cursor-pointer flex mx-5 ${dynamicStyleBoder(

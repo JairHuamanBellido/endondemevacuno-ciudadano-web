@@ -28,7 +28,7 @@ export default function ListDistrics({ selectDistrict, vaccineCenters, ..._props
 
     return (
         <div>
-            <h2 className="font-semibold mt-7 mb-3">Distritos</h2>
+            <h2 className="font-semibold lg:mt-7 mb-3">Distritos</h2>
             <ul className="w-full flex-col justify-end ">
                 {getDistricts().map((e) => (
                     <li key={e.id} className={`cursor-pointer flex-col border-b-2 border-slate-200 py-5 leading-tight`} onClick={() => handleClick(e.name)}>
