@@ -6,7 +6,7 @@ import { VaccineCenter } from "../../../VaccineCenter/Domain/model/VaccineCenter
 const Tab = ({ href, isSelected, title }: any) => (
     <Link replace href={href}>
         <a
-            className={`px-5 bg-blue ${isSelected ? "text-black border-b-2 border-black" : "text-slate-500"}`}
+            className={`w-full px-5 bg-blue ${isSelected ? "text-black border-b-2 border-black" : "text-slate-500 border-b-2 border-slate-200"}`}
         >
             {title}
         </a>
@@ -34,24 +34,24 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
     if (vaccineCenter != undefined)
         return (
             <div className="lg:mt-7">
-                <div className="flex mb-7 items-center">
-                    <div className="flex">
+                <div className="flex flex-wrap md:flex-nowrap mb-7 justify-between items-center space-y-3 md:space-y-0">
+                    <div className="flex justify-between">
                         <h2 className="text-primary font-semibold text-lg ">{vaccineCenter.name}</h2>
-                        <div className="border border-r border-slate-200 mx-7"></div>
+                        <div className="hidden lg:block border border-r border-slate-200 mx-7"></div>
                     </div>
                     <div>
                         <span className="text-slate-500">Afluencia</span>
                         <span className={`text-white ${dynamicStyleBG(vaccineCenter.influx)} px-3 py-1 mx-3 rounded-md capitalize`}>{vaccineCenter.influx}</span>
                     </div>
                 </div>
-                <nav className="border-b-2">
-                    <Tab href="/" title="Información general" isSelected={isTabOneSelected} />
+                <nav className="flex">
+                    <Tab className="hidden" href="/" title="Información General" isSelected={isTabOneSelected} />
                     <Tab href="/?tabTwo=true" title="Estadísticas" isSelected={isTabTwoSelected} />
                 </nav>
 
                 {isTabOneSelected && <section>
-                    <div className="flex my-5">
-                        <div className="w-2/4">
+                    <div className="flex flex-wrap my-5 space-y-2 md:space-y-2">
+                        <div className="w-full md:w-2/4">
                             <p className="text-sm text-slate-500">Dirección</p>
                             <p className="text-sm">{vaccineCenter.direction}</p>
                         </div>
@@ -74,10 +74,10 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                 </section>}
                 {isTabTwoSelected &&
                     <section className="flex flex-col">
-                        <label className="font-medium my-5" htmlFor="input">
-                            Cantidad de personas asistadas al centro de vacunación en el último mes, semana y día
-                        </label>
-                        <div className="flex">
+                        <span className="font-medium my-5 break-words max-w-full">
+                            Cantidad de personas asistadas al centro de vacunación asdsad
+                        </span>
+                        <div className="flex w-full flex-wrap">
                             <label className="font-semibold mr-5">Filtros:</label>
                             <div className="mb-5">
                                 <span className="p-2 m-2 text-slate-500 cursor-pointer">Mes</span>
@@ -86,7 +86,6 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                                 <span className="p-2 m-2 text-slate-500 cursor-pointer">Hora</span>
                             </div>
                         </div>
-                        <img src="https://media.discordapp.net/attachments/690694542550106222/959168968264921158/unknown.png" />
                     </section>}
             </div>
         );
