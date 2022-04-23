@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { HtmlHTMLAttributes } from "react";
+import { HtmlHTMLAttributes, useState } from "react";
 import StatisticsMainConatiner from "../../../Statistics/Application/components/MainContainer";
 import { VaccineCenter } from "../../../VaccineCenter/Domain/model/VaccineCenter";
 
@@ -16,13 +16,22 @@ const Tab = ({ href, isSelected, title }: any) => (
 
 interface Props extends HtmlHTMLAttributes<HTMLElement> {
     vaccineCenter: VaccineCenter;
+    vaccineCenters: VaccineCenter[];
 }
 
-export default function VaccineCenterDetail({ vaccineCenter }: Props) {
+export default function VaccineCenterDetail({ vaccineCenter, vaccineCenters }: Props) {
     const { query } = useRouter();
 
-    const isTabOneSelected = !query.tabTwo;
-    const isTabTwoSelected = !!query.tabTwo;
+    const isTabOneSelected = !query.stadistics && !query.compare;
+    const isTabTwoSelected = !!query.stadistics;
+    const isTabThreeSelected = !!query.compare;
+
+    const [vaccineCenter2, setVaccineCenter2] = useState<VaccineCenter>();
+    const [value, setValue] = useState<string>('');
+
+    const getFilteredVaccinationCenter = () => {
+        return vaccineCenters.filter(vc => vc.name.toUpperCase().includes(value.toUpperCase())).slice(0, 3);
+    }
 
     const dynamicStyleBG = (influx: string) => {
         switch (influx) {
@@ -47,8 +56,9 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                     </div>
                 </div>
                 <nav className="flex">
-                    <Tab className="hidden" href="/" title="Inf. General" isSelected={isTabOneSelected} />
-                    <Tab href="/?tabTwo=true" title="Estadísticas" isSelected={isTabTwoSelected} />
+                    <Tab className="hidden" href="/" title="Inf" isSelected={isTabOneSelected} />
+                    <Tab href="/?stadistics=true" title="Estadísticas" isSelected={isTabTwoSelected} />
+                    <Tab href="/?compare=true" title="Comparar" isSelected={isTabThreeSelected} />
                 </nav>
 
                 {isTabOneSelected && <section>
@@ -79,7 +89,33 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                         </span>
                         <StatisticsMainConatiner vaccineCenter={vaccineCenter} />
                     </section>}
-            </div>
+
+                {isTabThreeSelected && <section>
+                    <input className="w-full focus:outline-none text-ellipsis h-9 border mt-2 rounded-md" placeholder={"Busca por nombre"} value={value} onChange={e => setValue(e.target.value)} />
+                    {value != '' && value != vaccineCenter2?.name &&
+                        < ul className="absolute overflow-auto z-50 bg-white w-[calc(100%-44px)] border mt-2">
+                            {
+                                getFilteredVaccinationCenter().map((vc) =>
+                                (<li key={vc.id} className={`cursor-pointer flex-col border-b-2 border-slate-200 py-5 leading-tight`} onClick={() => { setVaccineCenter2(vc); setValue(vc.name) }}>
+                                    <h4 className={``}>
+                                        {vc.name}
+                                    </h4>
+                                    <span className={`text-xs text-slate-500`}>
+                                        {vc.district}
+                                    </span>
+                                </li>)
+                                )
+                            }
+                        </ul>
+                    }
+                    {vaccineCenter2 &&
+                        <div className="mt-5">
+                            <StatisticsMainConatiner vaccineCenter={vaccineCenter} vaccineCenter2={vaccineCenter2} />
+                        </div>
+                    }
+
+                </section>}
+            </div >
         );
     else
         return (<div></div>);

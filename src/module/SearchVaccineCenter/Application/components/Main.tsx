@@ -128,7 +128,7 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
                 {(chosenSearch == 0 || searching) && !hasBeenSelected() && (<ListVaccineCenters selectVaccineCenter={selectMap} vaccineCenters={getFilteredVaccinationCenter()} />)}
                 {chosenSearch == 1 && isEnteringData() && (<ListDistrics selectDistrict={selectDistrict} vaccineCenters={getFilteredVaccinationCenter()} />)}
                 {chosenSearch == 2 && isEnteringData() && (<VaccinationList selectVaccines={selectVaccines} />)}
-                {hasBeenSelected() && (<VaccineCenterDetail vaccineCenter={getVaccineCenterSelected()} />)}
+                {hasBeenSelected() && (<VaccineCenterDetail vaccineCenter={getVaccineCenterSelected()} vaccineCenters={vaccineCenters} />)}
             </div>
         </div >
     );

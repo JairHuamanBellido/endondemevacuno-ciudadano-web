@@ -2,6 +2,9 @@ import { HttpRestApiInflow } from "../../Infrastructure/HttpRestApiInflow";
 
 export class GetInflowByDatesService {
   public static async execute(filter: string, vaccineCenterId: string) {
+    if (vaccineCenterId == "")
+      return [];
+
     if (filter === "Hora") {
       const { startDate, endDate } = this.getDatesCurrentHour();
       const inflows = await HttpRestApiInflow.getAll(

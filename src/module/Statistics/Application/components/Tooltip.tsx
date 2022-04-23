@@ -8,7 +8,6 @@ interface IProps {
 }
 export default function Tooltip(props: IProps) {
   const { multi, valueTwo, isVisible, translateY, translateX, value } = props;
-  console.log(multi);
   if (multi) {
     return (
       <div
