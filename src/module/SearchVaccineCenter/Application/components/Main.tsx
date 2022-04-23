@@ -1,4 +1,5 @@
 import { HtmlHTMLAttributes, useState } from "react";
+import { Spinner } from "../../../../shared";
 import BackIcon from "../../../../shared/icon/BackIcon";
 import CloseIcon from "../../../../shared/icon/CloseIcon";
 import SearchIcon from "../../../../shared/icon/SearchIcon";
@@ -11,9 +12,10 @@ import VaccineCenterDetail from "./VaccineCenterDetail";
 interface Props extends HtmlHTMLAttributes<HTMLElement> {
     selectVaccineCenterToMap(select: string): void;
     vaccineCenters: VaccineCenter[];
+    isLoading: boolean;
 }
 
-export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap, vaccineCenters, ...props }: Props) {
+export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap, vaccineCenters, isLoading, ...props }: Props) {
     const searchTypes = [
         { id: 0, name: "nombre", placeholder: "Busca por nombre" },
         { id: 1, name: "distrito", placeholder: "Selecciona un distrito" },
@@ -124,12 +126,21 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
                     </div>
                 )}
             </div>
-            <div className="bg-white px-6 py-8 mt-4 rounded-md lg:p-0 lg:m-0 lg:h-[calc(100%-100px)]">
-                {(chosenSearch == 0 || searching) && !hasBeenSelected() && (<ListVaccineCenters selectVaccineCenter={selectMap} vaccineCenters={getFilteredVaccinationCenter()} />)}
-                {chosenSearch == 1 && isEnteringData() && (<ListDistrics selectDistrict={selectDistrict} vaccineCenters={getFilteredVaccinationCenter()} />)}
-                {chosenSearch == 2 && isEnteringData() && (<VaccinationList selectVaccines={selectVaccines} />)}
-                {hasBeenSelected() && (<VaccineCenterDetail vaccineCenter={getVaccineCenterSelected()} vaccineCenters={vaccineCenters} />)}
-            </div>
+            {
+                !isLoading &&
+                < div className="bg-white px-6 py-8 mt-4 rounded-md lg:p-0 lg:m-0 lg:h-[calc(100%-100px)]">
+                    {(chosenSearch == 0 || searching) && !hasBeenSelected() && (<ListVaccineCenters selectVaccineCenter={selectMap} vaccineCenters={getFilteredVaccinationCenter()} />)}
+                    {chosenSearch == 1 && isEnteringData() && (<ListDistrics selectDistrict={selectDistrict} vaccineCenters={getFilteredVaccinationCenter()} />)}
+                    {chosenSearch == 2 && isEnteringData() && (<VaccinationList selectVaccines={selectVaccines} />)}
+                    {hasBeenSelected() && (<VaccineCenterDetail vaccineCenter={getVaccineCenterSelected()} vaccineCenters={vaccineCenters} />)}
+                </div>
+            }
+            {
+                isLoading &&
+                <div className="mr-10 h-10 w-10">
+                    <Spinner></Spinner>
+                </div>
+            }
         </div >
     );
 }

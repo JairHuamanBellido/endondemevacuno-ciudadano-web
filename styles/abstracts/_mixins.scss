@@ -1,0 +1,22 @@
+@mixin rounded-4 {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+@mixin transition {
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+@mixin flex($jc, $ai, $direction: row) {
+  display: flex;
+  align-items: $ai;
+  flex-direction: $direction;
+  justify-content: $jc;
+}

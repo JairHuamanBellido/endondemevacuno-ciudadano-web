@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { HtmlHTMLAttributes } from "react";
+import Image from "next/image";
 
 interface Props extends HtmlHTMLAttributes<HTMLElement> { }
 const Links = [
@@ -29,8 +30,12 @@ export default function TopBar({ ...props }: Props) {
     return (
         <div className='w-screen h-15 flex'>
             <div className="flex items-center py-2 px-6 w-fit h-full">
-                <div className="bg-primary h-5 w-5 mr-5">
-                </div>
+                <Image
+                    width={80}
+                    height={80}
+                    src="/icon.svg"
+                    alt="En Donde Me Vacuno"
+                />
                 <h1 className="h-fit">EnDondeMeVacuno</h1>
             </div>
             <nav className="flex w-full md:mx-20">
