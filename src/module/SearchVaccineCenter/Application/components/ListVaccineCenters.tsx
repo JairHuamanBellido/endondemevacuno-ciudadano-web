@@ -7,9 +7,9 @@ interface Props extends HtmlHTMLAttributes<HTMLElement> {
 }
 export default function ListVaccineCenters({ selectVaccineCenter, vaccineCenters, ..._props }: Props) {
     return (
-        <div>
-            <h2 className="font-semibold lg:mt-7 mb-3">Centros de vacunación</h2>
-            <ul className="w-full flex-col justify-end ">
+        <div className="h-full">
+            <h2 className="font-semibold lg:mt-7 mb-3 h-3">Centros de vacunación</h2>
+            <ul className="h-[calc(100%)] overflow-auto">
                 {vaccineCenters.map((e) => (
                     <li key={e.id} className={`cursor-pointer flex-col border-b-2 border-slate-200 py-5 leading-tight`} onClick={() => { selectVaccineCenter(e.id) }}>
                         <h4 className={``}>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { HtmlHTMLAttributes } from "react";
+import StatisticsMainConatiner from "../../../Statistics/Application/components/MainContainer";
 import { VaccineCenter } from "../../../VaccineCenter/Domain/model/VaccineCenter";
 
 const Tab = ({ href, isSelected, title }: any) => (
@@ -25,6 +26,7 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
 
     const dynamicStyleBG = (influx: string) => {
         switch (influx) {
+            case 'Sin data': return 'bg-lime-500';
             case 'baja': return 'bg-lime-500';
             case 'media': return 'bg-orange-500';
             case 'alta': return 'bg-primary';
@@ -39,9 +41,9 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                         <h2 className="text-primary font-semibold text-lg ">{vaccineCenter.name}</h2>
                         <div className="hidden lg:block border border-r border-slate-200 mx-7"></div>
                     </div>
-                    <div>
-                        <span className="text-slate-500">Afluencia</span>
-                        <span className={`text-white ${dynamicStyleBG(vaccineCenter.influx)} px-3 py-1 mx-3 rounded-md capitalize`}>{vaccineCenter.influx}</span>
+                    <div className="flex flex-wrap">
+                        <span className="text-slate-500 mr-3">Afluencia</span>
+                        <span className={`text-white ${dynamicStyleBG(vaccineCenter.affluenceLevel)} px-3 py-1 rounded-md capitalize`}>{vaccineCenter.affluenceLevel}</span>
                     </div>
                 </div>
                 <nav className="flex">
@@ -63,12 +65,10 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
 
                     <div className="flex">
                         <p className="w-2/4 text-sm text-slate-500">Vacunas</p>
-                        <p className="w-2/4 text-sm text-slate-500">Cantidad</p>
                     </div>
-                    {vaccineCenter.vaccines.map(((v: any) => (
-                        <div key={v.name} className="flex">
-                            <p className="w-2/4 text-sm">{v.name}</p>
-                            <p className="w-2/4 text-sm">{v.quantity}</p>
+                    {vaccineCenter.vaccines.map(((v: string) => (
+                        <div key={v} className="flex">
+                            <p className="text-sm">{v}</p>
                         </div>
                     )))}
                 </section>}
@@ -77,7 +77,8 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                         <span className="font-medium my-5 break-words max-w-full">
                             Cantidad de personas asistadas al centro de vacunación asdsad
                         </span>
-                        <div className="flex w-full flex-wrap">
+                        <StatisticsMainConatiner vaccineCenter={vaccineCenter} />
+                        {/*<div className="flex w-full flex-wrap">
                             <label className="font-semibold mr-5">Filtros:</label>
                             <div className="mb-5">
                                 <span className="p-2 m-2 text-slate-500 cursor-pointer">Mes</span>
@@ -85,7 +86,7 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                                 <span className="p-2 m-2 text-slate-500 cursor-pointer">Hoy</span>
                                 <span className="p-2 m-2 text-slate-500 cursor-pointer">Hora</span>
                             </div>
-                        </div>
+                </div>*/}
                     </section>}
             </div>
         );

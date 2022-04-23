@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex flex-col w-screen h-screen">
       <TopBar />
-      <div className="flex w-full h-full relative">
+      <div className="flex w-full h-full relative overflow-hidden">
         <SearchVaccineCenterContainer selectVaccineCenterToMap={setSelected} vaccineCenters={allCV ?? []} />
         <main className="h-full w-full">
           {<GoogleMap selected={selected} locations={getLocations()} />}

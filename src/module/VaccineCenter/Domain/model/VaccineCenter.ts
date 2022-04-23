@@ -6,8 +6,9 @@ export interface VaccineCenter {
     direction: string;
     district: string;
     localization: string;
-    influx: string;
-    vaccines: Vaccine[];
+    affluenceLevel: string;
+    businessHour: string;
+    vaccines: string[];
 }
 
 export interface Vaccine {

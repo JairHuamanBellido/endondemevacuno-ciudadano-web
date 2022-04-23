@@ -74,7 +74,7 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
             return vaccineCenters.filter(vc => {
                 let response = false;
                 vc.vaccines.forEach((v: any) => {
-                    if (vaccines.includes(v.name))
+                    if (vaccines.includes(v))
                         response = true;
                 });
                 return response;
@@ -96,8 +96,8 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
     }
 
     return (
-        <div className="absolute w-9/12 top-0 left-[calc(12.5%)] z-50 lg:left-0 lg:relative lg:block lg:border lg:border-r lg:border-slate-200 py-8 lg:px-6 lg:h-full lg:max-w-[450px]">
-            <div className="flex bg-white lg:w-full border-2 border-slate-200 p-2 rounded-md">
+        <div className="absolute w-9/12 top-0 left-[calc(12.5%)] z-50 lg:left-0 lg:relative lg:block lg:border lg:border-r lg:border-slate-200 py-8 lg:px-6 lg:h-full lg:max-w-[500px]">
+            <div className="flex bg-white lg:w-full border-2 border-slate-200 p-2 rounded-md h-14">
                 {isEnteringData() &&
                     <select value={chosenSearch} className="bg-primary text-white py-1.5 px-1 rounded-md focus:outline-none capitalize"
                         onChange={e => handleChangeSearchType(+e.target.value)}>
@@ -124,7 +124,7 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
                     </div>
                 )}
             </div>
-            <div className="bg-white px-6 py-8 mt-4 rounded-md lg:p-0 lg:m-0">
+            <div className="bg-white px-6 py-8 mt-4 rounded-md lg:p-0 lg:m-0 lg:h-[calc(100%-100px)]">
                 {(chosenSearch == 0 || searching) && !hasBeenSelected() && (<ListVaccineCenters selectVaccineCenter={selectMap} vaccineCenters={getFilteredVaccinationCenter()} />)}
                 {chosenSearch == 1 && isEnteringData() && (<ListDistrics selectDistrict={selectDistrict} vaccineCenters={getFilteredVaccinationCenter()} />)}
                 {chosenSearch == 2 && isEnteringData() && (<VaccinationList selectVaccines={selectVaccines} />)}
