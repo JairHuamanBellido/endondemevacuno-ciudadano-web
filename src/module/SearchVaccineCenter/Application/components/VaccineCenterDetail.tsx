@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { HtmlHTMLAttributes, useState } from "react";
+import SearchIcon from "../../../../shared/icon/SearchIcon";
 import StatisticsMainConatiner from "../../../Statistics/Application/components/MainContainer";
 import { VaccineCenter } from "../../../VaccineCenter/Domain/model/VaccineCenter";
 
@@ -91,7 +92,12 @@ export default function VaccineCenterDetail({ vaccineCenter, vaccineCenters }: P
                     </section>}
 
                 {isTabThreeSelected && <section>
-                    <input className="w-full focus:outline-none text-ellipsis h-9 border mt-2 rounded-md" placeholder={"Busca por nombre"} value={value} onChange={e => setValue(e.target.value)} />
+                    <div className="flex border mt-2 rounded-md">
+                        <div className="flex items-center justify-center mx-2" >
+                            <SearchIcon color="#000" />
+                        </div>
+                        <input className="w-full focus:outline-none text-ellipsis h-9 " placeholder={"Busca por nombre"} value={value} onChange={e => setValue(e.target.value)} />
+                    </div>
                     {value != '' && value != vaccineCenter2?.name &&
                         < ul className="absolute overflow-auto z-50 bg-white w-[calc(100%-44px)] border mt-2">
                             {
@@ -107,6 +113,18 @@ export default function VaccineCenterDetail({ vaccineCenter, vaccineCenters }: P
                                 )
                             }
                         </ul>
+                    }
+                    {vaccineCenter2 &&
+                        <div className="mt-2 md:flex md:justify-between">
+                            <div className="flex w-full items-center md:justify-center">
+                                <div className="bg-primary h-5 w-5 rounded-md mr-2"></div>
+                                <span>{vaccineCenter.name}</span>
+                            </div>
+                            <div className="flex w-full items-center md:justify-center">
+                                <div className="bg-secundary h-5 w-5 rounded-md mr-2"></div>
+                                <span>{vaccineCenter2.name}</span>
+                            </div>
+                        </div>
                     }
                     {vaccineCenter2 &&
                         <div className="mt-5">
