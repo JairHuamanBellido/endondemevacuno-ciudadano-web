@@ -47,46 +47,37 @@ export default function VaccineCenterDetail({ vaccineCenter }: Props) {
                     </div>
                 </div>
                 <nav className="flex">
-                    <Tab className="hidden" href="/" title="Información General" isSelected={isTabOneSelected} />
+                    <Tab className="hidden" href="/" title="Inf. General" isSelected={isTabOneSelected} />
                     <Tab href="/?tabTwo=true" title="Estadísticas" isSelected={isTabTwoSelected} />
                 </nav>
 
                 {isTabOneSelected && <section>
-                    <div className="flex flex-wrap my-5 space-y-2 md:space-y-2">
-                        <div className="w-full md:w-2/4">
-                            <p className="text-sm text-slate-500">Dirección</p>
-                            <p className="text-sm">{vaccineCenter.direction}</p>
+                    <div className="flex flex-wrap justify-between my-5 space-y-2 md:space-y-0">
+                        <div className="w-full md:w-5/12">
+                            <p className="text-sm md:text-base text-slate-500">Dirección</p>
+                            <p className="text-sm md:text-base">{vaccineCenter.direction}</p>
                         </div>
-                        <div className="w-2/4">
-                            <p className="text-sm text-slate-500">Distrito</p>
-                            <p className="text-sm">{vaccineCenter.district}</p>
+                        <div className="w-5/12">
+                            <p className="text-sm md:text-base text-slate-500">Distrito</p>
+                            <p className="text-sm md:text-base" >{vaccineCenter.district}</p>
                         </div>
                     </div>
 
                     <div className="flex">
-                        <p className="w-2/4 text-sm text-slate-500">Vacunas</p>
+                        <p className="w-2/4 text-sm md:text-base text-slate-500">Vacunas</p>
                     </div>
                     {vaccineCenter.vaccines.map(((v: string) => (
                         <div key={v} className="flex">
-                            <p className="text-sm">{v}</p>
+                            <p className="text-sm md:text-base">{v}</p>
                         </div>
                     )))}
                 </section>}
                 {isTabTwoSelected &&
                     <section className="flex flex-col">
-                        <span className="font-medium my-5 break-words max-w-full">
-                            Cantidad de personas asistadas al centro de vacunación asdsad
+                        <span className="text-sm md:text-base my-5 break-words max-w-full">
+                            Cantidad de personas asistadas al centro de vacunación en el último mes, semana y día
                         </span>
                         <StatisticsMainConatiner vaccineCenter={vaccineCenter} />
-                        {/*<div className="flex w-full flex-wrap">
-                            <label className="font-semibold mr-5">Filtros:</label>
-                            <div className="mb-5">
-                                <span className="p-2 m-2 text-slate-500 cursor-pointer">Mes</span>
-                                <span className="p-2 m-2 text-white bg-primary rounded-md cursor-pointer">Semana</span>
-                                <span className="p-2 m-2 text-slate-500 cursor-pointer">Hoy</span>
-                                <span className="p-2 m-2 text-slate-500 cursor-pointer">Hora</span>
-                            </div>
-                </div>*/}
                     </section>}
             </div>
         );

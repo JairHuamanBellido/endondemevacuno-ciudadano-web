@@ -117,4 +117,7 @@ a {
   .labels-hour:nth-child(4n) {
     display: initial;
   }
+  .container-chart{
+    height: 300px;
+  }
 }

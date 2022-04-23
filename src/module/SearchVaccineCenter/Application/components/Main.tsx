@@ -96,7 +96,7 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
     }
 
     return (
-        <div className="absolute w-9/12 top-0 left-[calc(12.5%)] z-50 lg:left-0 lg:relative lg:block lg:border lg:border-r lg:border-slate-200 py-8 lg:px-6 lg:h-full lg:max-w-[500px]">
+        <div className="absolute w-11/12 top-0 left-[calc(4.1%)] z-50 lg:left-0 lg:relative lg:block lg:border lg:border-r lg:border-slate-200 py-8 lg:px-6 lg:h-full lg:max-w-[500px]">
             <div className="flex bg-white lg:w-full border-2 border-slate-200 p-2 rounded-md h-14">
                 {isEnteringData() &&
                     <select value={chosenSearch} className="bg-primary text-white py-1.5 px-1 rounded-md focus:outline-none capitalize"

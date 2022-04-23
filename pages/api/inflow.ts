@@ -54,7 +54,6 @@ const getInflowPerWeek = () => {
         { ["Jue"]: data + randomInt(75) - randomInt(75) },
         { ["Vie"]: data + randomInt(75) - randomInt(75) },
         { ["Sab"]: data + randomInt(75) - randomInt(75) },
-        { ["Dom"]: data + randomInt(75) - randomInt(75) },
     ];
 }
 
