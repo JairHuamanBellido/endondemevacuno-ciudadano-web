@@ -5,9 +5,10 @@ import Marker from './Marker';
 interface Props extends HtmlHTMLAttributes<HTMLElement> {
     selected: string;
     locations: any[];
+    selectVaccineCenter(vcId: string): void;
 }
 
-export default function GoogleMap({ selected, locations, ..._props }: Props) {
+export default function GoogleMap({ selected, locations, selectVaccineCenter, ..._props }: Props) {
     const [geolocation, setGeoLocation] = useState({
         lat: -12.047038,
         lng: -77.077199
@@ -49,6 +50,8 @@ export default function GoogleMap({ selected, locations, ..._props }: Props) {
                         selected={marker.id == selected}
                         lat={marker.location.lat}
                         lng={marker.location.lng}
+                        vcId={marker.id}
+                        onClick={() => selectVaccineCenter(marker.id)}
                     />
                 ))
             }

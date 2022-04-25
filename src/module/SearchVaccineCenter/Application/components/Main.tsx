@@ -1,4 +1,4 @@
-import { HtmlHTMLAttributes, useState } from "react";
+import { HtmlHTMLAttributes, useEffect, useState } from "react";
 import { Spinner } from "../../../../shared";
 import BackIcon from "../../../../shared/icon/BackIcon";
 import CloseIcon from "../../../../shared/icon/CloseIcon";
@@ -13,9 +13,10 @@ interface Props extends HtmlHTMLAttributes<HTMLElement> {
     selectVaccineCenterToMap(select: string): void;
     vaccineCenters: VaccineCenter[];
     isLoading: boolean;
+    vcSelected: string;
 }
 
-export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap, vaccineCenters, isLoading, ...props }: Props) {
+export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap, vaccineCenters, isLoading, vcSelected, ...props }: Props) {
     const searchTypes = [
         { id: 0, name: "nombre", placeholder: "Busca por nombre" },
         { id: 1, name: "distrito", placeholder: "Selecciona un distrito" },
@@ -26,6 +27,10 @@ export default function SearchVaccineCenterContainer({ selectVaccineCenterToMap,
     const [value, setValue] = useState("");
     const [searching, setSearching] = useState(false);
     const [selectResult, setSelectResult] = useState("");
+
+    useEffect(() => {
+        setSelectResult(vcSelected);
+    }, [vcSelected]);
 
     const handleChangeSearchType = (id: number) => {
         setChosenSearch(id);
