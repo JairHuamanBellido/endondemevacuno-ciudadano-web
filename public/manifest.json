@@ -1,33 +1,32 @@
 {
-    "theme_color": "#FF1A59",
-    "background_color": "#ffffff",
-    "display": "fullscreen",
-    "scope": "/",
-    "start_url": "/",
-    "app_name": "En Donde Me Vacuno",
-    "short_name": "En Donde Me Vacuno",
-    "description": "Aplicación de búsqueda de centros de vacunación",
-    "icons": [
-      {
-        "src": "/icon.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "/icon.png",
-        "sizes": "256x256",
-        "type": "image/png"
-      },
-      {
-        "src": "/icon.png",
-        "sizes": "384x384",
-        "type": "image/png"
-      },
-      {
-        "src": "/icon.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  
+  "theme_color": "#FF1A59",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/",
+  "app_name": "En Donde Me Vacuno",
+  "short_name": "En Donde Me Vacuno",
+  "description": "Aplicación de búsqueda de centros de vacunación",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
