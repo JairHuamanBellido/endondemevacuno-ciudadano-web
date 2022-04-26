@@ -1,5 +1,6 @@
 const path = require("path");
-/** @type {import('next').NextConfig} */
+const withPWA = require("next-pwa");
+
 const nextConfig = {
   reactStrictMode: true,
   env: {
@@ -8,6 +9,14 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  ...withPWA({
+    pwa: {
+      dest: "public",
+      register: true,
+      skipWaiting: true,
+      disable: process.env.NODE_ENV === "development",
+    },
+  }),
 }
 
 module.exports = nextConfig
