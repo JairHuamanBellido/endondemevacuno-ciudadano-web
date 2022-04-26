@@ -35,9 +35,9 @@ const Home: NextPage = () => {
       </Head>
       <TopBar />
       <div className="flex w-full h-full relative overflow-hidden">
-        <SearchVaccineCenterContainer selectVaccineCenterToMap={setSelected} vaccineCenters={allCV ?? []} isLoading={isLoading} />
+        <SearchVaccineCenterContainer vcSelected={selected} selectVaccineCenterToMap={setSelected} vaccineCenters={allCV ?? []} isLoading={isLoading} />
         <main className="h-full w-full">
-          {<GoogleMap selected={selected} locations={getLocations()} />}
+          {<GoogleMap selected={selected} selectVaccineCenter={setSelected} locations={getLocations()} />}
         </main>
       </div>
     </div>

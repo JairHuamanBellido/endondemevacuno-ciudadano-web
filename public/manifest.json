@@ -6,7 +6,7 @@
   "start_url": "/",
   "app_name": "En Donde Me Vacuno",
   "short_name": "En Donde Me Vacuno",
-  "description": "Aplicación de búsqueda de centros de vacunación",
+  "description": "Aplicación de en tiempo real del nivel de afluencia de los centros de vacunacion",
   "icons": [
     {
       "src": "/icon.png",
